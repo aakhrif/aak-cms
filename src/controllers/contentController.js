@@ -13,8 +13,8 @@ exports.getAllContents = (req, res) => {
 
 // Create a new content
 exports.create = (req, res) => {
-  const { title, body } = req.body;
-  const newContent = new Content({ title, body });
+  const { title, text } = req.body;
+  const newContent = new Content({ title, text });
   newContent.save()
       .then((savedContent) => {
           res.status(201).json(savedContent);
@@ -27,8 +27,8 @@ exports.create = (req, res) => {
 // Update an existing content
 exports.update = (req, res) => {
   const { id } = req.params;
-  const { title, body } = req.body;
-  Content.findByIdAndUpdate(id, { title, body }, { new: true })
+  const { title, text } = req.body;
+  Content.findByIdAndUpdate(id, { title, text }, { new: true })
       .then((updatedContent) => {
           if (!updatedContent) {
               return res.status(404).json({ error: 'Content not found.' });
