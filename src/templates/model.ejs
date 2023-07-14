@@ -1,0 +1,16 @@
+// <%= modelName %>.js
+    const mongoose = require('mongoose');
+
+    const <%= modelName %>Schema = new mongoose.Schema({
+        <% fields.forEach(function(field) { %>
+            <%= field.name %>: {
+                type: <%= field.type %>,
+                    <% if (field.required) { %>required: true,<% } %>
+                            <% if (field.default) { %>default: <%= field.default %>,<% } %>
+                                        },
+                                        <% }) %>
+                                            });
+
+                                            // Define custom methods, statics, etc.
+
+                                            module.exports = mongoose.model('<%= modelName %>', <%= modelName %>Schema);
